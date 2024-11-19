@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace StudentDiaryWPF
+namespace StudentDiaryWPF.Views
 {
     /// <summary>
     /// Interaction logic for AddEditStudentView.xaml
