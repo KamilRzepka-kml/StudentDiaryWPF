@@ -1,4 +1,5 @@
 ﻿using StudentDiaryWPF.Commands;
+using StudentDiaryWPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,23 +19,22 @@ namespace StudentDiaryWPF.ViewModels
 
         public ICommand RefreshStudentsCommand { get; set; }
 
-        private string _test = "XXX";
 
-        public string Test
+        private Student _selectedStudent;
+
+        public Student SelectedStudent
         {
-            get { return _test; }
+            get { return _selectedStudent; }
             set 
-            { 
-                _test = value;
+            {
+                _selectedStudent = value;
                 OnPropertyChanged();
             }
         }
 
-
         private void RefreshStudents(object obj)
         {
-            //MessageBox.Show(Test);
-            Test = "YYY";
+            
         }
 
     }
