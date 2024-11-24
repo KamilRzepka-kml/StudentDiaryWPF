@@ -27,5 +27,10 @@ namespace StudentDiaryWPF.Views
             InitializeComponent();
             DataContext = new MainViewModel();
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
