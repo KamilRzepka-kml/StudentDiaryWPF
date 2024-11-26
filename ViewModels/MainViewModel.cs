@@ -2,6 +2,7 @@
 using MahApps.Metro.Controls.Dialogs;
 using StudentDiaryWPF.Commands;
 using StudentDiaryWPF.Models;
+using StudentDiaryWPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,8 +18,8 @@ namespace StudentDiaryWPF.ViewModels
     {
         public MainViewModel()
         {
-            AddStudentCommand = new RelayCommand(AddStudent);
-            EditStudentCommand = new RelayCommand(EditStudent, CanEditDeleteStudent);
+            AddStudentCommand = new RelayCommand(AddEditStudent);
+            EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
 
@@ -35,18 +36,6 @@ namespace StudentDiaryWPF.ViewModels
         public ICommand RefreshStudentsCommand { get; set; }
 
 
-        private Student _selectedStudent;
-
-        public Student SelectedStudent
-        {
-            get { return _selectedStudent; }
-            set 
-            {
-                _selectedStudent = value;
-                OnPropertyChanged();
-            }
-        }
-
 
         private ObservableCollection<Student> _students;
 
@@ -59,6 +48,20 @@ namespace StudentDiaryWPF.ViewModels
                 OnPropertyChanged();
             }
         }
+
+
+        private Student _selectedStudent;
+
+        public Student SelectedStudent
+        {
+            get { return _selectedStudent; }
+            set 
+            {
+                _selectedStudent = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private int _selectedGroupId;
 
@@ -100,7 +103,10 @@ namespace StudentDiaryWPF.ViewModels
         private async Task DeleteStudent(object obj)
         {
             var metroWindow = Application.Current.MainWindow as MetroWindow;
-            var dialog = await metroWindow.ShowMessageAsync("Usuwanie ucznia", $"Czy na pewno chcesz usunąć ucznia {SelectedStudent.FirstName} {SelectedStudent.LastName}?", MessageDialogStyle.AffirmativeAndNegative);
+            var dialog = await metroWindow.ShowMessageAsync(
+                "Usuwanie ucznia",
+                $"Czy na pewno chcesz usunąć ucznia {SelectedStudent.FirstName} {SelectedStudent.LastName}?", 
+                MessageDialogStyle.AffirmativeAndNegative);
 
             if (dialog != MessageDialogResult.Affirmative)
                 return;
@@ -110,14 +116,17 @@ namespace StudentDiaryWPF.ViewModels
             RefreshDiary();
         }
 
-        private void EditStudent(object obj)
+        private void AddEditStudent(object obj)
         {
+            var AddEditStudentWindow = new AddEditStudentView(obj as Student);
+            AddEditStudentWindow.Closed += AddEditStudentWindow_Closed;
+            AddEditStudentWindow.ShowDialog();
         }
 
-        private void AddStudent(object obj)
+        private void AddEditStudentWindow_Closed(object sender, EventArgs e)
         {
+            RefreshDiary();
         }
-
 
         private void InitGRoups()
         {
