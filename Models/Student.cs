@@ -21,9 +21,5 @@ namespace StudentDiaryWPF.Models
         public bool Activities { get; set; }
         public Group Group { get; set; }
 
-
-
-
-
     }
 }
