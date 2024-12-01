@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace StudentDiaryWPF
 {
@@ -14,5 +15,8 @@ namespace StudentDiaryWPF
         {
                 
         }
+        public  ICommand CloseCommand { get; set; }
+        public ICommand ConfirmCommand { get; set; }
+
     }
 }
