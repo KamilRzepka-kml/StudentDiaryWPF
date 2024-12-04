@@ -90,6 +90,8 @@ namespace StudentDiaryWPF.ViewModels
 
 
 
+
+
         private void RefreshStudents(object obj)
         {
             RefreshDiary();
