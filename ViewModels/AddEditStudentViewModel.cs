@@ -19,6 +19,7 @@ namespace StudentDiaryWPF
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
 
+
             if (student == null )
             {
                 Student = new Student();
