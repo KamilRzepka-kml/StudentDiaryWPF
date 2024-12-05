@@ -25,7 +25,7 @@ namespace StudentDiaryWPF.ViewModels
 
             RefreshDiary();
 
-            InitGRoups();
+            InitGroups();
         }
 
        
@@ -130,7 +130,7 @@ namespace StudentDiaryWPF.ViewModels
             RefreshDiary();
         }
 
-        private void InitGRoups()
+        private void InitGroups()
         {
             Groups = new ObservableCollection<Group>
             {
