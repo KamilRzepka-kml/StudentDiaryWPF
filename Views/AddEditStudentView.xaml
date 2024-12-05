@@ -65,7 +65,7 @@
             Grid.Column="1" 
             Margin="5"
             ItemsSource="{Binding Groups}"
-            SelectedItem="{Binding Student.Group.Id}"
+            SelectedValue="{Binding Student.Group.Id}"
             DisplayMemberPath="Name"
             SelectedValuePath="Id"
             />
