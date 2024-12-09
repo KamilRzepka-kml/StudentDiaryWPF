@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentDiaryWPF.Models
+namespace StudentDiaryWPF.Models.Wrappers
 {
-    public class Group
+    public class GroupWrapper
     {
         public int Id { get; set; }
         public string Name { get; set; }
