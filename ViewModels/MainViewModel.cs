@@ -19,6 +19,11 @@ namespace StudentDiaryWPF.ViewModels
     {
         public MainViewModel()
         {
+            using (var context = new ApplicationDBContext())
+            {
+                var students = context.Students.ToList();
+            }
+
             AddStudentCommand = new RelayCommand(AddEditStudent);
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
