@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using StudentDiaryWPF.Models.Domains;
+using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using StudentDiaryWPF.Commands;
 using StudentDiaryWPF.Models;
@@ -17,6 +18,8 @@ namespace StudentDiaryWPF.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private Repository _repository = new Repository();
+
         public MainViewModel()
         {
             using (var context = new ApplicationDBContext())
@@ -82,9 +85,9 @@ namespace StudentDiaryWPF.ViewModels
         }
 
 
-        private ObservableCollection<GroupWrapper> _groups;
+        private ObservableCollection<Group> _groups;
 
-        public ObservableCollection<GroupWrapper> Groups
+        public ObservableCollection<Group> Groups
         {
             get { return _groups; }
             set
@@ -93,9 +96,6 @@ namespace StudentDiaryWPF.ViewModels
                 OnPropertyChanged();
             }
         }
-
-
-
 
 
         private void RefreshStudents(object obj)
@@ -138,12 +138,12 @@ namespace StudentDiaryWPF.ViewModels
 
         private void InitGroups()
         {
-            Groups = new ObservableCollection<GroupWrapper>
-            {
-                new GroupWrapper {Id = 0, Name = "Wszystkie"},
-                new GroupWrapper {Id = 1, Name = "1A"},
-                new GroupWrapper {Id = 2, Name = "2A"}
-            };
+            var groups =  _repository.GetGroups();
+            groups.Insert(0, new Group { Id = 0, Name = "Wszystkie" });
+
+
+            Groups = new ObservableCollection<Group>(groups);
+          
 
             SelectedGroupId = 0;
         }
