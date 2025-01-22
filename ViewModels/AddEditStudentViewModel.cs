@@ -123,7 +123,7 @@ namespace StudentDiaryWPF
         private void InitGroups()
         {
             var groups = _repository.GetGroups();
-            groups.Insert(0, new Group { Id = 0, Name = "Wszystkie" });
+            groups.Insert(0, new Group { Id = 0, Name = "-- brak --" });
 
 
             Groups = new ObservableCollection<Group>(groups);

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using StudentDiaryWPF.Models.Converters;
 
 namespace StudentDiaryWPF
 {
@@ -32,7 +33,10 @@ namespace StudentDiaryWPF
                 if (groupId != 0)
                     students = students.Where(x => x.GroupId == groupId);
 
-                return students.ToList();
+                return students
+                    .ToList()
+                    .Select(x => x.ToWrapper())
+                    .ToList();
             }
 
         }
