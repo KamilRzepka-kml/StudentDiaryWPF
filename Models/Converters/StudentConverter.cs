@@ -23,8 +23,22 @@ namespace StudentDiaryWPF.Models.Converters
                 { 
                     Id = model.Group.Id, 
                     Name = model.Group.Name
-                }
-
+                },
+                Math = string.Join(",",model.Raitings
+                        .Where(y => y.SubjectId == (int)Subject.Math)
+                        .Select(y => y.Rate)),
+                Physics = string.Join(",", model.Raitings
+                        .Where(y => y.SubjectId == (int)Subject.Physics)
+                        .Select(y => y.Rate)),
+                PolishLang = string.Join(",", model.Raitings
+                        .Where(y => y.SubjectId == (int)Subject.PolishLang)
+                        .Select(y => y.Rate)),
+                ForeignLang = string.Join(",", model.Raitings
+                        .Where(y => y.SubjectId == (int)Subject.ForeignLang)
+                        .Select(y => y.Rate)),
+                Technology = string.Join(",", model.Raitings
+                        .Where(y => y.SubjectId == (int)Subject.Technology)
+                        .Select(y => y.Rate)),
             };
         }
     }
