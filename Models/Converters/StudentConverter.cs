@@ -41,5 +41,26 @@ namespace StudentDiaryWPF.Models.Converters
                         .Select(y => y.Rate)),
             };
         }
+        public static Student ToDao(this StudentWrapper model)
+        {
+            return new Student
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                GroupId = model.Group.Id,
+                Comments = model.Comments,
+                Activities = model.Activities
+            };
+        }
+        public static List<Rating> ToRatingDao(this StudentWrapper model)
+        {
+            var ratings = new List<Rating>();
+
+
+
+
+            return ratings;
+        }
     }
 }

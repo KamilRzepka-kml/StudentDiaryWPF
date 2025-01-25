@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentDiaryWPF.Models.Domains
 {
-    public class Raiting
+    public class Rating
     {
         public int Id { get; set; }
         public int Rate { get; set; }
