@@ -27,7 +27,7 @@ namespace StudentDiaryWPF
                 var students = context
                     .Students
                     .Include(x => x.Group)
-                    .Include(x => x.Raitings)
+                    .Include(x => x.Ratings)
                     .AsQueryable();
 
                 if (groupId != 0)
@@ -39,6 +39,27 @@ namespace StudentDiaryWPF
                     .ToList();
             }
 
+        }
+
+        public void DeleteStudent(int id)
+        {
+            using (var context = new ApplicationDBContext())
+            {
+                var studentToDelete = context.Students.Find(id);
+                context.Students.Remove(studentToDelete);
+                context.SaveChanges();
+            }
+        }
+
+        public void UpdateStudent(StudentWrapper studentWrapper)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddStudent(StudentWrapper studentWrapper)
+        {
+            var student = studentWrapper.ToDao();
+            var ratings = studentWrapper.ToRatingDao();
         }
     }
 }

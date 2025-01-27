@@ -12,7 +12,7 @@ namespace StudentDiaryWPF.Models.Domains
     {
         public Student()
         {
-            Raitings = new Collection<Raiting>();
+            Ratings = new Collection<Rating>();
         }
 
         public int Id { get; set; }
@@ -23,6 +23,6 @@ namespace StudentDiaryWPF.Models.Domains
         public int GroupId { get; set; }
 
         public Group Group { get; set; }
-        public ICollection<Raiting> Raitings { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
     }
 }

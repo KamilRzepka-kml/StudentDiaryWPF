@@ -101,12 +101,12 @@ namespace StudentDiaryWPF
 
         private void UpdateStudent()
         {
-            //baza danych
+            _repository.UpdateStudent(Student);
         }
 
         private void AddStudent()
         {
-            //baza danych
+            _repository.AddStudent(Student);
         }
 
         private void Close(object obj)

@@ -17,7 +17,7 @@ namespace StudentDiaryWPF
 
         public DbSet<Student> Students { get; set; }
         public DbSet<Group> Groups { get; set; }
-        public DbSet<Raiting> Raitings { get; set; }
+        public DbSet<Rating> Raitings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

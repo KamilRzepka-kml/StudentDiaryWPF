@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace StudentDiaryWPF.Models.Configurations
 {
-    public class RaitingConfiguration : EntityTypeConfiguration<Raiting>
+    public class RaitingConfiguration : EntityTypeConfiguration<Rating>
     {
         public RaitingConfiguration()
         {
