@@ -53,13 +53,32 @@ namespace StudentDiaryWPF
 
         public void UpdateStudent(StudentWrapper studentWrapper)
         {
-            throw new NotImplementedException();
+            var student = studentWrapper.ToDao();
+            var ratings = studentWrapper.ToRatingDao();
+
+            using (var context = new ApplicationDBContext())
+            {
+                var studentToUpdate = context.Students.Find(student.Id);
+            }
         }
 
         public void AddStudent(StudentWrapper studentWrapper)
         {
             var student = studentWrapper.ToDao();
             var ratings = studentWrapper.ToRatingDao();
+
+            using (var context = new ApplicationDBContext())
+            {
+                var dbStudent = context.Students.Add(student);
+
+                ratings.ForEach(x =>
+                {
+                    x.StudentId = dbStudent.Id;
+                    context.Ratings.Add(x);
+                });
+
+                context.SaveChanges();
+            }
         }
     }
 }
