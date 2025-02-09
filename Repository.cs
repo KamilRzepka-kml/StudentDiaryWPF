@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using StudentDiaryWPF.Models.Converters;
+using StudentDiaryWPF.Models;
 
 namespace StudentDiaryWPF
 {
@@ -59,6 +60,48 @@ namespace StudentDiaryWPF
             using (var context = new ApplicationDBContext())
             {
                 var studentToUpdate = context.Students.Find(student.Id);
+                studentToUpdate.Activities = student.Activities;
+                studentToUpdate.Comments = student.Comments;
+                studentToUpdate.FirstName = student.FirstName;
+                studentToUpdate.LastName = student.LastName;
+                studentToUpdate.GroupId = student.GroupId;
+
+                var studentsRatings = context
+                    .Ratings
+                    .Where(x => x.StudentId == student.Id)
+                    .ToList();
+
+                var mathRatings = studentsRatings
+                    .Where(x => x.SubjectId == (int)Subject.Math)
+                    .Select(x => x.Rate);
+
+                var newMathRatings = ratings
+                    .Where(x => x.SubjectId == (int)Subject.Math)
+                    .Select(x => x.Rate);
+
+                var mathRatingsToDelete = mathRatings.Except(newMathRatings).ToList();
+                var mathRatingsToAdd = newMathRatings.Except(mathRatings).ToList();
+
+                mathRatingsToDelete.ForEach(x =>
+                {
+                    var ratingToDelete = context.Ratings.First(y => 
+                        y.Rate == x && 
+                        y.StudentId == student.Id && 
+                        y.SubjectId == (int)Subject.Math);
+                    context.Ratings.Remove(ratingToDelete);
+                });
+
+                mathRatingsToAdd.ForEach(x =>
+                {
+                    var ratingToAdd = new Rating
+                    {
+                        Rate = x,
+                        StudentId = student.Id,
+                        SubjectId = (int) Subject.Math
+                    };
+                    context.Ratings.Add(ratingToAdd);
+                });
+
             }
         }
 
