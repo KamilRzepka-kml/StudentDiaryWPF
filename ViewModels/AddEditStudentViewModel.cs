@@ -91,6 +91,9 @@ namespace StudentDiaryWPF
 
         private void Confirm(object obj)
         {
+            if (!Student.IsValid)
+                return;
+
             if (!IsUpdate)
                 AddStudent();
             else

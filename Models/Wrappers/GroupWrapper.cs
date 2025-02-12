@@ -31,8 +31,15 @@ namespace StudentDiaryWPF.Models.Wrappers
             }
         }
 
-
         public string Error { get; set; }
+
+        public bool IsValid
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(Error);
+            }
+        }
     }
 }
 
