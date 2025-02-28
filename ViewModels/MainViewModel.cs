@@ -31,18 +31,21 @@ namespace StudentDiaryWPF.ViewModels
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
+            SettingsCommand = new RelayCommand(Settings);
+
 
             RefreshDiary();
 
             InitGroups();
         }
 
-       
-
+      
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
         public ICommand RefreshStudentsCommand { get; set; }
+        public ICommand SettingsCommand { get; set; }
+
 
 
 
@@ -154,6 +157,12 @@ namespace StudentDiaryWPF.ViewModels
                 _repository.GetStudents(SelectedGroupId));
           
         }
+
+        private void Settings(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }

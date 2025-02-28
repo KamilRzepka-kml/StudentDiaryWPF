@@ -1,16 +1,23 @@
 using StudentDiaryWPF.Models.Configurations;
 using StudentDiaryWPF.Models.Domains;
+using StudentDiaryWPF.Properties;
 using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace StudentDiaryWPF
 {
     public class ApplicationDBContext : DbContext
     {
-   
+        private static string _connectionString = $@"
+            Server={Settings.Default.ServerAdress}\{Settings.Default.ServerName};
+            Database={Settings.Default.Database};
+            User Id={Settings.Default.User};
+            Password={Settings.Default.Password};";
+
         public ApplicationDBContext()
-            : base("name=ApplicationDBContext")
+            : base(_connectionString)
         {
 
         }
