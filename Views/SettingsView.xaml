@@ -7,8 +7,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentDiaryWPF.Views"
         mc:Ignorable="d"
-        Title="SettingsView" Height="450" Width="800">
+        Title="Ustawienia" 
+                 Height="270" 
+                 Width="400"
+                 Name="SettingsWindow" 
+                 >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Content="Adres serwera:" Margin="5" />
+        <TextBox 
+            Text="{Binding UserSettings.ServerAdress, 
+                    UpdateSourceTrigger=PropertyChanged, 
+                    ValidatesOnDataErrors=True}"
+                Grid.Column="1"
+                Margin="5" 
+        />
+        <Label Content="Nazwa serwera:" Margin="5" />
+        <TextBox 
+            Text="{Binding UserSettings.ServerName, 
+                UpdateSourceTrigger=PropertyChanged, 
+                ValidatesOnDataErrors=True}"
+            Grid.Column="1"
+            Grid.Row="1"
+            Margin="5" 
+         />
+        <Label Content="Baza danych:" Margin="5" />
+        <TextBox 
+            Text="{Binding UserSettings.Database, 
+                UpdateSourceTrigger=PropertyChanged, 
+                ValidatesOnDataErrors=True}"
+            Grid.Column="1"
+            Grid.Row="2"
+            Margin="5" 
+         />
+        <Label Content="Użytkownik:" Margin="5" />
+        <TextBox 
+            Text="{Binding UserSettings.User, 
+                UpdateSourceTrigger=PropertyChanged, 
+                ValidatesOnDataErrors=True}"
+            Grid.Column="1"
+            Grid.Row="3"
+            Margin="5" 
+         />
+        <Label Content="Hasło:" Margin="5" />
+        <TextBox 
+            Text="{Binding UserSettings.Password, 
+                UpdateSourceTrigger=PropertyChanged, 
+                ValidatesOnDataErrors=True}"
+            Grid.Column="1"
+            Grid.Row="4"
+            Margin="5" 
+         />
+         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" >
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=SettingsWindow}" Content="Anuluj" Height="25" Width="100" Margin="5" Click="Button_Click" />
+     <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=AddEditStudentWindow}" Content="Zapisz" Height="25" Width="100" Margin="5" />
+ </StackPanel>
+
 
     </Grid>
 </mah:MetroWindow>
