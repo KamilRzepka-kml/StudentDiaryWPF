@@ -91,55 +91,55 @@ namespace StudentDiaryWPF.Models
 
                         }
                         break;
-                    case nameof(ServerAdress):
-                        if (string.IsNullOrWhiteSpace(ServerAdress))
+                    case nameof(ServerName):
+                        if (string.IsNullOrWhiteSpace(ServerName))
                         {
-                            Error = "Pole Adres serwera jest wymagane.";
-                            _isServerAdressValid = false;
+                            Error = "Pole Nazwa serwera jest wymagane.";
+                            _isServerNameValid = false;
                         }
                         else
                         {
                             Error = string.Empty;
-                            _isServerAdressValid = true;
+                            _isServerNameValid = true;
 
                         }
                         break;
-                    case nameof(ServerAdress):
-                        if (string.IsNullOrWhiteSpace(ServerAdress))
+                    case nameof(Database):
+                        if (string.IsNullOrWhiteSpace(Database))
                         {
-                            Error = "Pole Adres serwera jest wymagane.";
-                            _isServerAdressValid = false;
+                            Error = "Pole Baza danych jest wymagane.";
+                            _isDatabaseValid = false;
                         }
                         else
                         {
                             Error = string.Empty;
-                            _isServerAdressValid = true;
+                            _isDatabaseValid = true;
 
                         }
                         break;
-                    case nameof(ServerAdress):
-                        if (string.IsNullOrWhiteSpace(ServerAdress))
+                    case nameof(User):
+                        if (string.IsNullOrWhiteSpace(User))
                         {
-                            Error = "Pole Adres serwera jest wymagane.";
-                            _isServerAdressValid = false;
+                            Error = "Pole Użytkownik jest wymagane.";
+                            _isUserValid = false;
                         }
                         else
                         {
                             Error = string.Empty;
-                            _isServerAdressValid = true;
+                            _isUserValid = true;
 
                         }
                         break;
-                    case nameof(ServerAdress):
-                        if (string.IsNullOrWhiteSpace(ServerAdress))
+                    case nameof(Password):
+                        if (string.IsNullOrWhiteSpace(Password))
                         {
-                            Error = "Pole Adres serwera jest wymagane.";
-                            _isServerAdressValid = false;
+                            Error = "Pole Hasło jest wymagane.";
+                            _isPasswordValid = false;
                         }
                         else
                         {
                             Error = string.Empty;
-                            _isServerAdressValid = true;
+                            _isPasswordValid = true;
 
                         }
                         break;
@@ -152,9 +152,21 @@ namespace StudentDiaryWPF.Models
 
         public string Error { get;set;}
 
-        internal void Save()
+        public bool IsValid
         {
-            throw new NotImplementedException();
+            get
+            {
+                return _isServerAdressValid && 
+                    _isServerNameValid && 
+                    _isDatabaseValid && 
+                    _isUserValid && 
+                    _isPasswordValid;
+            }
+        }
+
+        public void Save()
+        {
+            Settings.Default.Save();
         }
     }
 }

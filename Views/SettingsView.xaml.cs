@@ -26,5 +26,10 @@ namespace StudentDiaryWPF.Views
             InitializeComponent();
             DataContext = new SettingsViewModel();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
