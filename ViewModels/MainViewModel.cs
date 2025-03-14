@@ -32,21 +32,17 @@ namespace StudentDiaryWPF.ViewModels
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
             SettingsCommand = new RelayCommand(Settings);
-
-
-            RefreshDiary();
-
-            InitGroups();
+            LoadedWindowCommand = new RelayCommand(LoadedWindow);
+            LoadedWindow(null);
         }
-
       
+
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
         public ICommand RefreshStudentsCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
-
-
+        public ICommand LoadedWindowCommand { get; set; }
 
 
         private ObservableCollection<StudentWrapper> _students;
@@ -100,6 +96,31 @@ namespace StudentDiaryWPF.ViewModels
             }
         }
 
+        private async void LoadedWindow(object obj)
+        {
+            if (!IsValidConnectionToDatabase())
+            {
+                var metroWindow = Application.Current.MainWindow as MetroWindow;
+                var dialog = await metroWindow.ShowMessageAsync("Błąd połączenia", $"Nie można połączyć się z bazą danych. Czychcesz zmienić ustawienia?", MessageDialogStyle.AffirmativeAndNegative);
+
+                if (dialog == MessageDialogResult.Negative)
+                {
+                    Application.Current.Shutdown();
+                }
+                else
+                {
+                    var settingsWindow = new SettingsView();
+                    settingsWindow.ShowDialog();
+                }
+            }
+            else
+            {
+                RefreshDiary();
+
+                InitGroups();
+            }
+        
+        }
 
         private void RefreshStudents(object obj)
         {
@@ -160,9 +181,26 @@ namespace StudentDiaryWPF.ViewModels
 
         private void Settings(object obj)
         {
-            throw new NotImplementedException();
+            var settingsWindow = new SettingsView();
+            settingsWindow.ShowDialog();
         }
 
-
+        private bool IsValidConnectionToDatabase()
+        {
+            try
+            {
+                using (var context = new ApplicationDBContext())
+                {
+                    context.Database.Connection.Open();
+                    context.Database.Connection.Close();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+       
     }
 }

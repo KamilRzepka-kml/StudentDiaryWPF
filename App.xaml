@@ -13,6 +13,10 @@
                 <!-- Theme setting -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Dodanie konwertera -->
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

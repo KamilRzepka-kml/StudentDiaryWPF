@@ -10,6 +10,7 @@
                  Height="270" 
                  Width="400"
                  Name="SettingsWindow" 
+                 WindowStartupLocation="CenterScreen"
                  >
     <Grid>
         <Grid.RowDefinitions>
@@ -33,7 +34,7 @@
                 Grid.Column="1"
                 Margin="5" 
         />
-        <Label Content="Nazwa serwera:" Margin="5" />
+        <Label Grid.Row ="1"  Content="Nazwa serwera:" Margin="5" />
         <TextBox 
             Text="{Binding UserSettings.ServerName, 
                 UpdateSourceTrigger=PropertyChanged, 
@@ -42,7 +43,7 @@
             Grid.Row="1"
             Margin="5" 
          />
-        <Label Content="Baza danych:" Margin="5" />
+        <Label Grid.Row ="2" Content="Baza danych:" Margin="5" />
         <TextBox 
             Text="{Binding UserSettings.Database, 
                 UpdateSourceTrigger=PropertyChanged, 
@@ -51,7 +52,7 @@
             Grid.Row="2"
             Margin="5" 
          />
-        <Label Content="Użytkownik:" Margin="5" />
+        <Label Grid.Row ="3" Content="Użytkownik:" Margin="5" />
         <TextBox 
             Text="{Binding UserSettings.User, 
                 UpdateSourceTrigger=PropertyChanged, 
@@ -60,7 +61,7 @@
             Grid.Row="3"
             Margin="5" 
          />
-        <Label Content="Hasło:" Margin="5" />
+        <Label Grid.Row ="4" Content="Hasło:" Margin="5" />
         <TextBox 
             Text="{Binding UserSettings.Password, 
                 UpdateSourceTrigger=PropertyChanged, 
