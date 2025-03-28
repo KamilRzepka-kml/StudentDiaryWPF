@@ -33,6 +33,7 @@ namespace StudentDiaryWPF.ViewModels
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
             SettingsCommand = new RelayCommand(Settings);
             LoadedWindowCommand = new RelayCommand(LoadedWindow);
+
             LoadedWindow(null);
         }
       
@@ -109,7 +110,7 @@ namespace StudentDiaryWPF.ViewModels
                 }
                 else
                 {
-                    var settingsWindow = new SettingsView();
+                    var settingsWindow = new SettingsView(false);
                     settingsWindow.ShowDialog();
                 }
             }
@@ -181,7 +182,7 @@ namespace StudentDiaryWPF.ViewModels
 
         private void Settings(object obj)
         {
-            var settingsWindow = new SettingsView();
+            var settingsWindow = new SettingsView(true);
             settingsWindow.ShowDialog();
         }
 

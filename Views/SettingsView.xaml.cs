@@ -21,15 +21,11 @@ namespace StudentDiaryWPF.Views
     /// </summary>
     public partial class SettingsView : MetroWindow
     {
-        public SettingsView()
+        public SettingsView(bool canCloseWindow)
         {
             InitializeComponent();
-            DataContext = new SettingsViewModel();
+            DataContext = new SettingsViewModel(canCloseWindow);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

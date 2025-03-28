@@ -15,13 +15,14 @@ namespace StudentDiaryWPF.ViewModels
     public class SettingsViewModel : ViewModelBase
     {
         private UserSettings _userSettings;
+        private readonly bool _canCloseWindow;
 
-        public SettingsViewModel()
+        public SettingsViewModel(bool canCloseWindow)
         {
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
             _userSettings = new UserSettings();
-
+            _canCloseWindow = canCloseWindow;
         }
 
         public ICommand CloseCommand { get; set; }
@@ -57,7 +58,10 @@ namespace StudentDiaryWPF.ViewModels
 
         private void Close(object obj)
         {
-            CloseWindow(obj as Window);
+            if (_canCloseWindow)
+                CloseWindow(obj as Window);
+            else
+                Application.Current.Shutdown();
         }
 
         private void CloseWindow(Window window)
